@@ -47,7 +47,30 @@ function openLottery(size) {
 
 
 
-// --- Safe navigation functions (define only if not already declared) ---
+
+// --- Safe navigation functions assigned to window ---
+if (typeof window.showPvPLobby === 'undefined') {
+    window.showPvPLobby = function() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lobby = document.getElementById('pvp-lobby');
+        if (lobby) lobby.style.display = 'block';
+    };
+}
+if (typeof window.showSoloLobby === 'undefined') {
+    window.showSoloLobby = function() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lobby = document.getElementById('solo-lobby');
+        if (lobby) lobby.style.display = 'block';
+    };
+}
+if (typeof window.showLotteryLobby === 'undefined') {
+    window.showLotteryLobby = function() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lobby = document.getElementById('lottery-lobby');
+        if (lobby) lobby.style.display = 'block';
+    };
+}
+
 if (typeof showPvPLobby === 'undefined') {
     function showPvPLobby() {
         document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
@@ -86,6 +109,28 @@ function showLotteryLobby() {
     document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
     const lobby = document.getElementById('lottery-lobby');
     if (lobby) lobby.style.display = 'block';
+}
+
+
+// --- Safe global definitions for game functions ---
+if (typeof window.showTicTacToe === 'undefined') {
+    window.showTicTacToe = function() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const ttt = document.getElementById('game-view-tictactoe');
+        if (ttt) ttt.style.display = 'block';
+    };
+}
+
+if (typeof window.openLottery === 'undefined') {
+    window.openLottery = function(size) {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lot = document.getElementById('lottery-room');
+        if (lot) {
+            lot.style.display = 'block';
+            const title = document.getElementById('lottery-title');
+            if (title) title.textContent = size + " TON Lottery";
+        }
+    };
 }
 
 // --- Export functions to window for inline HTML onclick ---
@@ -122,7 +167,30 @@ function openLottery(size) {
 
 
 
-// --- Safe navigation functions (define only if not already declared) ---
+
+// --- Safe navigation functions assigned to window ---
+if (typeof window.showPvPLobby === 'undefined') {
+    window.showPvPLobby = function() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lobby = document.getElementById('pvp-lobby');
+        if (lobby) lobby.style.display = 'block';
+    };
+}
+if (typeof window.showSoloLobby === 'undefined') {
+    window.showSoloLobby = function() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lobby = document.getElementById('solo-lobby');
+        if (lobby) lobby.style.display = 'block';
+    };
+}
+if (typeof window.showLotteryLobby === 'undefined') {
+    window.showLotteryLobby = function() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lobby = document.getElementById('lottery-lobby');
+        if (lobby) lobby.style.display = 'block';
+    };
+}
+
 if (typeof showPvPLobby === 'undefined') {
     function showPvPLobby() {
         document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
@@ -161,6 +229,28 @@ function showLotteryLobby() {
     document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
     const lobby = document.getElementById('lottery-lobby');
     if (lobby) lobby.style.display = 'block';
+}
+
+
+// --- Safe global definitions for game functions ---
+if (typeof window.showTicTacToe === 'undefined') {
+    window.showTicTacToe = function() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const ttt = document.getElementById('game-view-tictactoe');
+        if (ttt) ttt.style.display = 'block';
+    };
+}
+
+if (typeof window.openLottery === 'undefined') {
+    window.openLottery = function(size) {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lot = document.getElementById('lottery-room');
+        if (lot) {
+            lot.style.display = 'block';
+            const title = document.getElementById('lottery-title');
+            if (title) title.textContent = size + " TON Lottery";
+        }
+    };
 }
 
 // --- Export functions to window for inline HTML onclick ---
@@ -958,7 +1048,30 @@ function openLottery(size) {
 
 
 
-// --- Safe navigation functions (define only if not already declared) ---
+
+// --- Safe navigation functions assigned to window ---
+if (typeof window.showPvPLobby === 'undefined') {
+    window.showPvPLobby = function() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lobby = document.getElementById('pvp-lobby');
+        if (lobby) lobby.style.display = 'block';
+    };
+}
+if (typeof window.showSoloLobby === 'undefined') {
+    window.showSoloLobby = function() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lobby = document.getElementById('solo-lobby');
+        if (lobby) lobby.style.display = 'block';
+    };
+}
+if (typeof window.showLotteryLobby === 'undefined') {
+    window.showLotteryLobby = function() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lobby = document.getElementById('lottery-lobby');
+        if (lobby) lobby.style.display = 'block';
+    };
+}
+
 if (typeof showPvPLobby === 'undefined') {
     function showPvPLobby() {
         document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
@@ -997,6 +1110,28 @@ function showLotteryLobby() {
     document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
     const lobby = document.getElementById('lottery-lobby');
     if (lobby) lobby.style.display = 'block';
+}
+
+
+// --- Safe global definitions for game functions ---
+if (typeof window.showTicTacToe === 'undefined') {
+    window.showTicTacToe = function() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const ttt = document.getElementById('game-view-tictactoe');
+        if (ttt) ttt.style.display = 'block';
+    };
+}
+
+if (typeof window.openLottery === 'undefined') {
+    window.openLottery = function(size) {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lot = document.getElementById('lottery-room');
+        if (lot) {
+            lot.style.display = 'block';
+            const title = document.getElementById('lottery-title');
+            if (title) title.textContent = size + " TON Lottery";
+        }
+    };
 }
 
 // --- Export functions to window for inline HTML onclick ---
