@@ -1817,7 +1817,35 @@ let gameState = ["", "", "", "", "", "", "", "", ""];
                 </div>
             </div>
 
-            <!-- Подраздел конкретной лотереи -->
+            
+<!-- TIC TAC TOE GAME VIEW -->
+<div id="game-view-tictactoe" class="game-view-container">
+    <button class="back-button" id="back-to-lobby-button">← Назад</button>
+    <h2 style="text-align:center;">Крестики-нолики</h2>
+    <div class="tic-tac-toe-game">
+        <div id="game-status" class="game-status">Ход: X</div>
+        <div class="board">
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+        </div>
+        <div style="margin-top:1rem;">
+            <input id="bet-amount" type="number" placeholder="Ставка (TON)" style="width:100%; margin-bottom:0.5rem;" />
+            <button id="create-room-btn" class="new-game-button">Создать комнату</button>
+            <button id="join-room-btn" class="new-game-button">Присоединиться</button>
+            <div id="room-info" style="margin-top:0.5rem; font-size:0.9rem; color:#ccc;"></div>
+        </div>
+        <button id="new-game-button" class="new-game-button" style="margin-top:1rem;">Новая игра</button>
+    </div>
+</div>
+
+<!-- Подраздел конкретной лотереи -->
             <div id="lottery-room" class="game-view-container">
                 <button id="back-to-lottery-lobby" class="back-button">← Вернуться к лотереям</button>
                 <h2 id="lottery-title" style="text-align:center; margin-bottom:1rem;">10 TON Lottery</h2>
