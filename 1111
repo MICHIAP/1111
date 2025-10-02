@@ -566,6 +566,18 @@ let gameState = ["", "", "", "", "", "", "", "", ""];
             statusDisplay.textContent = `Ход: ${currentPlayer}`;
         }
         // --- END TIC TAC TOE CORE LOGIC ---
+
+        // --- TIC TAC TOE: Restart Game ---
+        function handleRestartGame() {
+            currentPlayer = "X";
+            gameActive = true;
+            gameState = ["", "", "", "", "", "", "", "", ""];
+            if (statusDisplay) statusDisplay.textContent = `Ход: ${currentPlayer}`;
+            if (cells && cells.forEach) {
+                cells.forEach(cell => cell.innerText = "");
+            }
+        }
+        // --- END Restart Game ---
         // --- ONLINE ROOMS: WebSocket client and helpers ---
         const APP_SERVER = "https://ludobulba.duckdns.org"; // сервер API
         const APP_WALLET_ADDRESS = TON_DEPOSIT_ADDRESS; // адрес депозитного кошелька приложения
