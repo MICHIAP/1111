@@ -713,7 +713,7 @@
         // modify existing cell click handler to route moves online when in a room
         const originalHandleCellClick = window.handleCellClick || null;
         // we will override handleCellClick after it's defined in final init (see below)
-Final Initialization Call ---
+// Final Initialization Call ---
         window.addEventListener('load', () => {
             // Инициализация переменных для Крестиков-ноликов
             statusDisplay = document.getElementById('game-status');
