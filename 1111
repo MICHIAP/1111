@@ -117,8 +117,16 @@ window.showLotteryLobby = function(){ location.hash = '#/lottery'; };
 window.showTicTacToe = function(){ location.hash = '#/tictactoe'; };
 window.openLottery = function(size){ location.hash = '#/lottery/' + size; };
 
-function hideAllGameViews(){ document.querySelectorAll('.game-view-container, #games-section').forEach(function(el){ el.style.display = 'none'; }); }
+); }
 function showById(id){ var el = document.getElementById(id); if(el) el.style.display = 'block'; window.scrollTo(0,0); }
+
+
+if (typeof window.hideAllGameViews === 'undefined') {
+    window.hideAllGameViews = function() {
+        document.querySelectorAll('.game-view-container, #games-section')
+          .forEach(function(el){ el.style.display = 'none'; });
+    };
+}
 
 function appRouter(){
     var hash = location.hash || '#/games';
@@ -265,8 +273,16 @@ window.showLotteryLobby = function(){ location.hash = '#/lottery'; };
 window.showTicTacToe = function(){ location.hash = '#/tictactoe'; };
 window.openLottery = function(size){ location.hash = '#/lottery/' + size; };
 
-function hideAllGameViews(){ document.querySelectorAll('.game-view-container, #games-section').forEach(function(el){ el.style.display = 'none'; }); }
+); }
 function showById(id){ var el = document.getElementById(id); if(el) el.style.display = 'block'; window.scrollTo(0,0); }
+
+
+if (typeof window.hideAllGameViews === 'undefined') {
+    window.hideAllGameViews = function() {
+        document.querySelectorAll('.game-view-container, #games-section')
+          .forEach(function(el){ el.style.display = 'none'; });
+    };
+}
 
 function appRouter(){
     var hash = location.hash || '#/games';
@@ -812,9 +828,7 @@ let gameState = ["", "", "", "", "", "", "", "", ""];
         
         
         
-        function hideAllGameViews() {
-            document.querySelectorAll('#games-section > div').forEach(div => div.classList.remove('active-sub-view'));
-        }
+        
 
         // Bulba Lottery logic (same as earlier, buySeat, render, roulette etc.)
         // ... (keeping short here but in file it's full implementation)
@@ -1174,8 +1188,16 @@ window.showLotteryLobby = function(){ location.hash = '#/lottery'; };
 window.showTicTacToe = function(){ location.hash = '#/tictactoe'; };
 window.openLottery = function(size){ location.hash = '#/lottery/' + size; };
 
-function hideAllGameViews(){ document.querySelectorAll('.game-view-container, #games-section').forEach(function(el){ el.style.display = 'none'; }); }
+); }
 function showById(id){ var el = document.getElementById(id); if(el) el.style.display = 'block'; window.scrollTo(0,0); }
+
+
+if (typeof window.hideAllGameViews === 'undefined') {
+    window.hideAllGameViews = function() {
+        document.querySelectorAll('.game-view-container, #games-section')
+          .forEach(function(el){ el.style.display = 'none'; });
+    };
+}
 
 function appRouter(){
     var hash = location.hash || '#/games';
