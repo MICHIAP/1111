@@ -21,7 +21,15 @@
         // --- Глобальные переменные для TON Connect ---
         let connector;
         const manifestUrl = 'https://raw.githubusercontent.com/MICHIAP/tonconnect-manifest.json/main/tonconnect-manifest.json';
-        const TON_DEPOSIT_ADDRESS = "UQAH1u89n-b4w9L16y-q_4m69J9Xz3r-G2s4J8T7B";
+
+        // --- NEW: server + app wallet ---
+        const APP_SERVER = "http://localhost:3000"; // поменяй если сервер будет на другом хосте
+        const APP_WALLET_ADDRESS = "UQAH1u89n-b4w9L16y-q_4m69J9Xz3r-G2s4J8T7B"; // адрес депозитного кошелька приложения
+        const TON_DEPOSIT_ADDRESS = APP_WALLET_ADDRESS; // для совместимости со старым кодом
+
+        // --- NEW: bet state ---
+        let betAmount = 0;
+
 
         // --- NEW: Функция для отображения критической ошибки на оверлее ---
         function showCriticalError(message) {
@@ -75,6 +83,21 @@
             initializeProfileUI(userId);
         }
 
+        // --- NEW: sync balance from server ---
+        async function refreshBalanceFromServer() {
+            if (!walletAddress) return;
+            try {
+                const res = await fetch(`${APP_SERVER}/balance/${encodeURIComponent(walletAddress)}`);
+                if (!res.ok) throw new Error("Failed to fetch balance");
+                const data = await res.json();
+                const bal = parseFloat(data.balance || 0);
+                saveBalanceToLocalStorage(bal);
+            } catch (e) {
+                console.warn("refreshBalanceFromServer failed:", e);
+                // leave local balance if server unreachable
+            }
+        }
+
         // --- Инициализация Приложения ---
         async function initializeApp() {
             try {
@@ -119,8 +142,10 @@
         };
         function updateBalanceUI() {
             const formattedBalance = currentTonBalance.toFixed(2);
-            document.getElementById('shared-ton-value').textContent = formattedBalance;
-            document.getElementById('player-summary-ton').textContent = formattedBalance;
+            const sharedValue = document.getElementById('shared-ton-value');
+            const playerSummary = document.getElementById('player-summary-ton');
+            if (sharedValue) sharedValue.textContent = formattedBalance;
+            if (playerSummary) playerSummary.textContent = formattedBalance;
 
             // Обновляем тень на Deposit Button
             const depositButton = document.querySelector('.deposit-button');
@@ -131,6 +156,7 @@
             }
         }
 
+        // updateBalance used for local simulation (keep for compatibility)
         function updateBalance(type, amount) {
             if (type === 'deposit') {
                 const newBalance = currentTonBalance + amount;
@@ -372,20 +398,21 @@
             }
         }
 
-        async function sendTonTransaction() {
+        // --- Modified sendTonTransaction to accept amount and call server deposit ---
+        async function sendTonTransaction(amountTon = 1) {
             if (!walletAddress) {
                 showNotification('Пожалуйста, сначала подключите кошелек TON.');
                 window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
                 return;
             }
 
-            const AMOUNT_TO_SEND = 10000000;
-            const displayAmount = (AMOUNT_TO_SEND / 1000000000);
+            const AMOUNT_TO_SEND = Math.round(amountTon * 1e9);
+            const displayAmount = amountTon;
 
             const transaction = {
                 messages: [
-                           {
-                        address: TON_DEPOSIT_ADDRESS,
+                    {
+                        address: APP_WALLET_ADDRESS,
                         amount: AMOUNT_TO_SEND.toString(),
                     }
                 ],
@@ -399,7 +426,23 @@
                 showNotification(`Отправка ${displayAmount.toFixed(2)} TON на подтверждение. Проверьте ваш кошелек.`);
 
                 await connector.sendTransaction(transaction);
-                updateBalance('deposit', displayAmount);
+
+                // после успешной ончейн транзакции уведомляем сервер, чтобы он зачислил баланс
+                try {
+                    await fetch(`${APP_SERVER}/deposit`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ address: walletAddress, amount: displayAmount })
+                    });
+                    // обновляем баланс с сервера
+                    await refreshBalanceFromServer();
+                } catch (e) {
+                    console.error("Failed to notify server about deposit:", e);
+                    showNotification("Депозит произведён ончейн, но сервер недоступен — баланс обновится позже.");
+                }
+
+                // local simulation fallback
+                // updateBalance('deposit', displayAmount);
 
             } catch (e) {
                 console.error("TON Transaction Failed:", e);
@@ -424,6 +467,8 @@
             connector.onStatusChange(wallet => {
                 if (wallet) {
                             updateWalletUI(wallet.account.address);
+                            // загрузим баланс с сервера при подключении
+                            refreshBalanceFromServer();
                 } else {
                     updateWalletUI(null);
                 }
@@ -448,24 +493,34 @@
                 menuItem.addEventListener('click', () => {
                     setActiveSection(menuId);
                     if (menuId === 'menu-deposit') {
-                        sendTonTransaction();
+                        // открываем стандартный депозит в 1 TON (можно изменить или сделать окно ввода)
+                        sendTonTransaction(1);
                     }
                 });
             }
         });
 
-        document.getElementById('shared-deposit-btn').addEventListener('click', sendTonTransaction);
-        document.getElementById('action-deposit').addEventListener('click', sendTonTransaction);
+        // привязываем кнопки депозита (в заглушке используем 1 TON)
+        const sharedDepositBtn = document.getElementById('shared-deposit-btn');
+        if (sharedDepositBtn) sharedDepositBtn.addEventListener('click', () => sendTonTransaction(1));
+        const actionDeposit = document.getElementById('action-deposit');
+        if (actionDeposit) actionDeposit.addEventListener('click', () => sendTonTransaction(1));
 
-        document.getElementById('shared-withdraw-btn').addEventListener('click', () => {
+        // кнопки вывода теперь делают запрос на сервер (вывод всех средств)
+        const sharedWithdrawBtn = document.getElementById('shared-withdraw-btn');
+        if (sharedWithdrawBtn) sharedWithdrawBtn.addEventListener('click', () => {
             if (!walletAddress) { showNotification('Пожалуйста, сначала подключите кошелек TON.'); return; }
-            showNotification('Открывается окно для вывода TON...');
+            withdrawFunds(); // вывод всех средств
         });
-        document.getElementById('action-withdraw').addEventListener('click', () => {
+
+        const actionWithdrawBtn = document.getElementById('action-withdraw');
+        if (actionWithdrawBtn) actionWithdrawBtn.addEventListener('click', () => {
                 if (!walletAddress) { showNotification('Пожалуйста, сначала подключите кошелек TON.'); return; }
-            showNotification('Открывается окно для вывода средств (из блока Profile)...');
+            withdrawFunds();
         });
-        document.getElementById('action-history').addEventListener('click', () => showNotification('Загружается история транзакций...'));
+
+        const actionHistoryBtn = document.getElementById('action-history');
+        if (actionHistoryBtn) actionHistoryBtn.addEventListener('click', () => showNotification('Загружается история транзакций...'));
 
         // --- Dynamic Referral Data ---
         function loadReferralData() {
@@ -516,6 +571,28 @@
             [0, 4, 8], [2, 4, 6]             // Диагонали
         ];
 
+        // --- NEW: placeBet checks balance on server and reserves (simple check) ---
+        async function placeBet() {
+            if (!walletAddress) {
+                showNotification('Пожалуйста, подключите TON-кошелек перед ставкой.');
+                return false;
+            }
+            const betInput = document.getElementById("bet-amount");
+            betAmount = parseFloat(betInput ? betInput.value : 1);
+
+            // обновим баланс с сервера перед началом
+            await refreshBalanceFromServer();
+
+            if (currentTonBalance < betAmount) {
+                showNotification(`Недостаточно средств на балансе приложения. Пожалуйста сделайте депозит ${betAmount} TON.`);
+                return false;
+            }
+
+            // В этом минимальном варианте мы не "резервируем" ставку на сервере отдельно —
+            // сервер проверит баланс и применит результат в /play при окончании игры.
+            return true;
+        }
+
         function handleResultValidation() {
             let roundWon = false;
             let winningLine = null;
@@ -539,10 +616,14 @@
                 statusDisplay.innerHTML = `Победитель: <span style="color: ${currentPlayer === 'X' ? 'var(--tg-theme-link-color)' : 'var(--tg-theme-destructive-text-color)'};">${currentPlayer}</span>!`;
                 gameActive = false;
                 window.Telegram?.WebApp?.HapticFeedback?.notificationOccurred('success');
+
                 // Визуальное выделение выигрышной линии
                 if (cells) {
                     winningLine.forEach(index => cells[index].style.backgroundColor = 'rgba(0, 230, 118, 0.4)');
                 }
+
+                // отправляем результат на сервер, чтобы он применил выигрыш/комиссию
+                applyGameResult('win');
                 return;
             }
 
@@ -551,6 +632,8 @@
                 statusDisplay.textContent = 'Ничья!';
                 gameActive = false;
                 window.Telegram?.WebApp?.HapticFeedback?.notificationOccurred('warning');
+
+                applyGameResult('draw');
                 return;
             }
 
@@ -582,6 +665,34 @@
 
             // Проверка на победу или ничью
             handleResultValidation();
+        }
+
+        // --- NEW: send result to server and refresh balance ---
+        async function applyGameResult(result) {
+            if (!walletAddress) {
+                showNotification('Ошибка: кошелек не подключен.');
+                return;
+            }
+
+            try {
+                const res = await fetch(`${APP_SERVER}/play`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ address: walletAddress, bet: betAmount, result })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    // Обновляем локально и UI
+                    const newBal = parseFloat(data.balance || 0);
+                    saveBalanceToLocalStorage(newBal);
+                    showNotification(data.message || 'Результат применён.');
+                } else {
+                    showNotification(data.error || 'Ошибка при применении результата.');
+                }
+            } catch (e) {
+                console.error("applyGameResult error:", e);
+                showNotification('Ошибка связи с сервером при отправке результата.');
+            }
         }
 
         function handleRestartGame() {
@@ -616,11 +727,17 @@
             cells.forEach(cell => {
                 cell.addEventListener('click', handleCellClick);
             });
-            document.getElementById('new-game-button').addEventListener('click', handleRestartGame);
+            document.getElementById('new-game-button').addEventListener('click', async () => {
+                const ok = await placeBet();
+                if (ok) handleRestartGame();
+            });
+            document.getElementById('new-game-button').addEventListener('contextmenu', (e) => e.preventDefault());
 
             // Привязка слушателей для навигации по играм
-            document.getElementById('open-tictactoe-game').addEventListener('click', showTicTacToe);
-            document.getElementById('back-to-lobby-button').addEventListener('click', () => {
+            const openTtt = document.getElementById('open-tictactoe-game');
+            if (openTtt) openTtt.addEventListener('click', showTicTacToe);
+            const backBtn = document.getElementById('back-to-lobby-button');
+            if (backBtn) backBtn.addEventListener('click', () => {
                 // При возврате к лобби, перезапускаем игру
                 handleRestartGame();
                 showGameLobby();
@@ -637,6 +754,32 @@
                 window.Telegram.WebApp.ready();
             }
         });
+
+        // --- Withdraw function (calls server to send TON from app wallet to user) ---
+        async function withdrawFunds() {
+            if (!walletAddress) { showNotification('Пожалуйста, сначала подключите кошелек TON.'); return; }
+            const amount = currentTonBalance;
+            if (amount <= 0) { showNotification('Баланс пустой, нечего выводить.'); return; }
+
+            try {
+                const res = await fetch(`${APP_SERVER}/withdraw`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ address: walletAddress, amount })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    // Обновим баланс локально и UI
+                    saveBalanceToLocalStorage(parseFloat(data.balance || 0));
+                    showNotification('Вывод выполнен. Проверьте ваш кошелек.');
+                } else {
+                    showNotification(data.error || 'Ошибка при выводе.');
+                }
+            } catch (e) {
+                console.error("withdrawFunds error:", e);
+                showNotification('Ошибка сети при попытке вывода.');
+            }
+        }
 
     </script>
     <style>
@@ -805,7 +948,7 @@
             transition: background-color 0.3s ease;
         }
 
-           .avatar-placeholder {
+        .avatar-placeholder {
             width: 1.75rem;
             height: 1.75rem;
             font-size: 0.8rem;
@@ -974,7 +1117,7 @@
         }
 
         .info-label-centered {
-            color: var(--tg-theme-hint-color, #bbb);
+            color: var(--tg-theme-hint-color, #888);
             font-size: 0.9375rem;
         }
 
@@ -1643,7 +1786,18 @@
                         <div class="cell" data-index="7"></div>
                         <div class="cell" data-index="8"></div>
                     </div>
-                    <button id="new-game-button" class="new-game-button">Начать новую игру</button>
+
+                    <!-- Новый блок выбора ставки -->
+                    <div style="text-align:center; margin:10px;">
+                        <label for="bet-amount">Ставка:</label>
+                        <select id="bet-amount">
+                            <option value="1">1 TON</option>
+                            <option value="2">2 TON</option>
+                            <option value="5">5 TON</option>
+                        </select>
+                    </div>
+
+                    <button id="new-game-button" class="new-game-button">Сделать ставку и начать</button>
                 </div>
             </div>
 
