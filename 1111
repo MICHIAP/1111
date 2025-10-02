@@ -17,14 +17,17 @@ if (typeof openLottery === 'undefined') {
 }
 
 
-// --- Explicit definitions for missing functions ---
 
-
-
+if (typeof window.showTicTacToe === 'undefined') {
+    window.showTicTacToe = function() {
+        location.hash = '#/tictactoe';
+    };
 }
-
-
-
+if (typeof window.openLottery === 'undefined') {
+    window.openLottery = function(size) {
+        location.hash = '#/lottery/' + size;
+    };
+}
 
 // --- Safe navigation functions assigned to window ---
 if (typeof window.showPvPLobby === 'undefined') {
@@ -162,14 +165,17 @@ if (typeof window !== 'undefined') {
     <!-- Подключаем TON Connect SDK -->
     <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js">
 
-// --- Explicit definitions for missing functions ---
 
-
-
+if (typeof window.showTicTacToe === 'undefined') {
+    window.showTicTacToe = function() {
+        location.hash = '#/tictactoe';
+    };
 }
-
-
-
+if (typeof window.openLottery === 'undefined') {
+    window.openLottery = function(size) {
+        location.hash = '#/lottery/' + size;
+    };
+}
 
 // --- Safe navigation functions assigned to window ---
 if (typeof window.showPvPLobby === 'undefined') {
@@ -1068,14 +1074,17 @@ let gameState = ["", "", "", "", "", "", "", "", ""];
 
     
 
-// --- Explicit definitions for missing functions ---
 
-
-
+if (typeof window.showTicTacToe === 'undefined') {
+    window.showTicTacToe = function() {
+        location.hash = '#/tictactoe';
+    };
 }
-
-
-
+if (typeof window.openLottery === 'undefined') {
+    window.openLottery = function(size) {
+        location.hash = '#/lottery/' + size;
+    };
+}
 
 // --- Safe navigation functions assigned to window ---
 if (typeof window.showPvPLobby === 'undefined') {
