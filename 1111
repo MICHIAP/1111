@@ -609,7 +609,7 @@
         // --- 
 
         // --- ONLINE ROOMS: WebSocket client and helpers ---
-        const APP_SERVER = "http://localhost:3000"; // сервер API
+        const APP_SERVER = "https://ludobulba.duckdns.org"; // сервер API
         const APP_WALLET_ADDRESS = TON_DEPOSIT_ADDRESS; // адрес депозитного кошелька приложения
 
         let ws = null;
@@ -618,7 +618,7 @@
 
         function initWebSocket() {
             try {
-                ws = new WebSocket("ws://localhost:3000");
+                ws = new WebSocket("wss://ludobulba.duckdns.org/ws");
                 ws.onopen = () => {
                     console.log("WebSocket connected");
                 };
@@ -1404,7 +1404,7 @@ Final Initialization Call ---
             padding: 0.3rem 0;
             box-shadow: 0 -0.125rem 0.625rem rgba(0, 0, 0, 0.5);
             z-index: 1000;
-            height: 4.3rem; /* Общая высота панели */
+            height: 4.5rem; /* Общая высота панели */
             border-top-left-radius: 0.9375rem;
             border-top-right-radius: 0.9375rem;
             box-sizing: border-box;
