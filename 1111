@@ -72,44 +72,20 @@ if (typeof window.showLotteryLobby === 'undefined') {
 }
 
 if (typeof showPvPLobby === 'undefined') {
-    function showPvPLobby() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const lobby = document.getElementById('pvp-lobby');
-        if (lobby) lobby.style.display = 'block';
-    }
+    
 }
 if (typeof showSoloLobby === 'undefined') {
-    function showSoloLobby() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const lobby = document.getElementById('solo-lobby');
-        if (lobby) lobby.style.display = 'block';
-    }
+    
 }
 if (typeof showLotteryLobby === 'undefined') {
-    function showLotteryLobby() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const lobby = document.getElementById('lottery-lobby');
-        if (lobby) lobby.style.display = 'block';
-    }
+    
 }
 
-function showPvPLobby() {
-    document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-    const lobby = document.getElementById('pvp-lobby');
-    if (lobby) lobby.style.display = 'block';
-}
 
-function showSoloLobby() {
-    document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-    const lobby = document.getElementById('solo-lobby');
-    if (lobby) lobby.style.display = 'block';
-}
 
-function showLotteryLobby() {
-    document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-    const lobby = document.getElementById('lottery-lobby');
-    if (lobby) lobby.style.display = 'block';
-}
+
+
+
 
 
 // --- Safe global definitions for game functions ---
@@ -192,44 +168,20 @@ if (typeof window.showLotteryLobby === 'undefined') {
 }
 
 if (typeof showPvPLobby === 'undefined') {
-    function showPvPLobby() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const lobby = document.getElementById('pvp-lobby');
-        if (lobby) lobby.style.display = 'block';
-    }
+    
 }
 if (typeof showSoloLobby === 'undefined') {
-    function showSoloLobby() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const lobby = document.getElementById('solo-lobby');
-        if (lobby) lobby.style.display = 'block';
-    }
+    
 }
 if (typeof showLotteryLobby === 'undefined') {
-    function showLotteryLobby() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const lobby = document.getElementById('lottery-lobby');
-        if (lobby) lobby.style.display = 'block';
-    }
+    
 }
 
-function showPvPLobby() {
-    document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-    const lobby = document.getElementById('pvp-lobby');
-    if (lobby) lobby.style.display = 'block';
-}
 
-function showSoloLobby() {
-    document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-    const lobby = document.getElementById('solo-lobby');
-    if (lobby) lobby.style.display = 'block';
-}
 
-function showLotteryLobby() {
-    document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-    const lobby = document.getElementById('lottery-lobby');
-    if (lobby) lobby.style.display = 'block';
-}
+
+
+
 
 
 // --- Safe global definitions for game functions ---
@@ -764,9 +716,9 @@ let gameState = ["", "", "", "", "", "", "", "", ""];
             hideAllGameViews();
             document.getElementById('game-lobby').classList.add('active-sub-view');
         }
-        function showPvPLobby() { hideAllGameViews(); document.getElementById('pvp-lobby').classList.add('active-sub-view'); }
-        function showSoloLobby() { hideAllGameViews(); document.getElementById('solo-lobby').classList.add('active-sub-view'); }
-        function showLotteryLobby() { hideAllGameViews(); document.getElementById('lottery-lobby').classList.add('active-sub-view'); }
+        
+        
+        
         function hideAllGameViews() {
             document.querySelectorAll('#games-section > div').forEach(div => div.classList.remove('active-sub-view'));
         }
@@ -1073,44 +1025,20 @@ if (typeof window.showLotteryLobby === 'undefined') {
 }
 
 if (typeof showPvPLobby === 'undefined') {
-    function showPvPLobby() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const lobby = document.getElementById('pvp-lobby');
-        if (lobby) lobby.style.display = 'block';
-    }
+    
 }
 if (typeof showSoloLobby === 'undefined') {
-    function showSoloLobby() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const lobby = document.getElementById('solo-lobby');
-        if (lobby) lobby.style.display = 'block';
-    }
+    
 }
 if (typeof showLotteryLobby === 'undefined') {
-    function showLotteryLobby() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const lobby = document.getElementById('lottery-lobby');
-        if (lobby) lobby.style.display = 'block';
-    }
+    
 }
 
-function showPvPLobby() {
-    document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-    const lobby = document.getElementById('pvp-lobby');
-    if (lobby) lobby.style.display = 'block';
-}
 
-function showSoloLobby() {
-    document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-    const lobby = document.getElementById('solo-lobby');
-    if (lobby) lobby.style.display = 'block';
-}
 
-function showLotteryLobby() {
-    document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-    const lobby = document.getElementById('lottery-lobby');
-    if (lobby) lobby.style.display = 'block';
-}
+
+
+
 
 
 // --- Safe global definitions for game functions ---
