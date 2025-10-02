@@ -486,7 +486,9 @@
             }
         }
 
-        // --- ЛОГИКА ИГРОВОЙ НАВИГАЦИИ ВНУТРИ GAMES-SECTION ---
+        let statusDisplay;
+
+// --- ЛОГИКА ИГРОВОЙ НАВИГАЦИИ ВНУТРИ GAMES-SECTION ---
         function showGameLobby() {
             hideAllGameViews();
             document.getElementById('game-lobby').classList.add('active-sub-view');
@@ -607,9 +609,7 @@
         // we will override handleCellClick after it's defined in final init (see below)
 // Final Initialization Call ---
         window.addEventListener('load', () => {
-            // Инициализация переменных для Крестиков-ноликов
-            statusDisplay = document.getElementById('game-status');
-            cells = document.querySelectorAll('.board .cell');
+            // Инициализация переменных для Крестиков-ноликовcells = document.querySelectorAll('.board .cell');
 
             // Привязка слушателей для Крестиков-ноликов
             cells.forEach(cell => {
@@ -642,7 +642,11 @@
             document.getElementById('new-game-button').addEventListener('click', handleRestartGame);
 
             // Привязка слушателей для навигации по играм
-            document.getElementById('open-tictactoe-game').addEventListener('click', showTicTacToe);
+            document.getElementById('open-tictactoe-game').addEventListener('click', () => {
+    showTicTacToe();
+    statusDisplay = document.getElementById('game-status');
+    if(statusDisplay) statusDisplay.textContent = 'Ход: X';
+});
             document.getElementById('back-to-lobby-button').addEventListener('click', () => {
                 // При возврате к лобби, перезапускаем игру
                 handleRestartGame();
