@@ -109,6 +109,15 @@ if (typeof window.openLottery === 'undefined') {
     };
 }
 
+
+if (typeof window.showMainGames === 'undefined') {
+    window.showMainGames = function() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const main = document.getElementById('games-section');
+        if (main) main.style.display = 'block';
+    };
+}
+
 // --- Export functions to window for inline HTML onclick ---
 if (typeof window !== 'undefined') {
     window.showGameLobby = showGameLobby;
@@ -202,6 +211,15 @@ if (typeof window.openLottery === 'undefined') {
             const title = document.getElementById('lottery-title');
             if (title) title.textContent = size + " TON Lottery";
         }
+    };
+}
+
+
+if (typeof window.showMainGames === 'undefined') {
+    window.showMainGames = function() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const main = document.getElementById('games-section');
+        if (main) main.style.display = 'block';
     };
 }
 
@@ -1059,6 +1077,15 @@ if (typeof window.openLottery === 'undefined') {
             const title = document.getElementById('lottery-title');
             if (title) title.textContent = size + " TON Lottery";
         }
+    };
+}
+
+
+if (typeof window.showMainGames === 'undefined') {
+    window.showMainGames = function() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const main = document.getElementById('games-section');
+        if (main) main.style.display = 'block';
     };
 }
 
@@ -2303,6 +2330,3 @@ if (typeof window !== 'undefined') {
                 <span>Profile</span>
             </div>
         </div>
-    </div>
-</body>
-</html>
