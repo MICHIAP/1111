@@ -5,9 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUDO-BULBA</title>
     <!-- Подключаем Telegram WebApp SDK -->
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js">
+// --- Export functions to window for inline HTML onclick ---
+if (typeof window !== 'undefined') {
+    window.showGameLobby = showGameLobby;
+    if (typeof showTicTacToe !== 'undefined') window.showTicTacToe = showTicTacToe;
+    if (typeof openLottery !== 'undefined') window.openLottery = openLottery;
+    if (typeof showPvPLobby !== 'undefined') window.showPvPLobby = showPvPLobby;
+    if (typeof showSoloLobby !== 'undefined') window.showSoloLobby = showSoloLobby;
+    if (typeof showLotteryLobby !== 'undefined') window.showLotteryLobby = showLotteryLobby;
+    if (typeof handleRestartGame !== 'undefined') window.handleRestartGame = handleRestartGame;
+}
+
+</script>
     <!-- Подключаем TON Connect SDK -->
-    <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js"></script>
+    <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js">
+// --- Export functions to window for inline HTML onclick ---
+if (typeof window !== 'undefined') {
+    window.showGameLobby = showGameLobby;
+    if (typeof showTicTacToe !== 'undefined') window.showTicTacToe = showTicTacToe;
+    if (typeof openLottery !== 'undefined') window.openLottery = openLottery;
+    if (typeof showPvPLobby !== 'undefined') window.showPvPLobby = showPvPLobby;
+    if (typeof showSoloLobby !== 'undefined') window.showSoloLobby = showSoloLobby;
+    if (typeof showLotteryLobby !== 'undefined') window.showLotteryLobby = showLotteryLobby;
+    if (typeof handleRestartGame !== 'undefined') window.handleRestartGame = handleRestartGame;
+}
+
+</script>
 
     <script type="module">
 
@@ -770,7 +794,19 @@ let gameState = ["", "", "", "", "", "", "", "", ""];
             }
         });
 
-    </script>
+    
+// --- Export functions to window for inline HTML onclick ---
+if (typeof window !== 'undefined') {
+    window.showGameLobby = showGameLobby;
+    if (typeof showTicTacToe !== 'undefined') window.showTicTacToe = showTicTacToe;
+    if (typeof openLottery !== 'undefined') window.openLottery = openLottery;
+    if (typeof showPvPLobby !== 'undefined') window.showPvPLobby = showPvPLobby;
+    if (typeof showSoloLobby !== 'undefined') window.showSoloLobby = showSoloLobby;
+    if (typeof showLotteryLobby !== 'undefined') window.showLotteryLobby = showLotteryLobby;
+    if (typeof handleRestartGame !== 'undefined') window.handleRestartGame = handleRestartGame;
+}
+
+</script>
     <style>
         /* Подключение шрифта Inter */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
