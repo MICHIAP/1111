@@ -487,6 +487,11 @@
         }
 
         let statusDisplay;
+let cells = [];
+let currentPlayer = "X";
+let gameActive = true;
+let gameState = ["", "", "", "", "", "", "", "", ""];
+
 
 // --- ЛОГИКА ИГРОВОЙ НАВИГАЦИИ ВНУТРИ GAMES-SECTION ---
         function showGameLobby() {
@@ -502,6 +507,56 @@
 
         // Bulba Lottery logic (same as earlier, buySeat, render, roulette etc.)
         // ... (keeping short here but in file it's full implementation)
+
+        // --- TIC TAC TOE CORE LOGIC ---
+        const winningConditions = [
+            [0,1,2],
+            [3,4,5],
+            [6,7,8],
+            [0,3,6],
+            [1,4,7],
+            [2,5,8],
+            [0,4,8],
+            [2,4,6]
+        ];
+
+        function handleCellClick(e) {
+            const cell = e.target;
+            const index = parseInt(cell.getAttribute('data-index'));
+            if (gameState[index] !== "" || !gameActive) return;
+
+            gameState[index] = currentPlayer;
+            cell.innerText = currentPlayer;
+
+            checkWinner();
+        }
+
+        function checkWinner() {
+            let roundWon = false;
+            for (let i = 0; i < winningConditions.length; i++) {
+                const [a, b, c] = winningConditions[i];
+                if (gameState[a] && gameState[a] === gameState[b] && gameState[a] === gameState[c]) {
+                    roundWon = true;
+                    break;
+                }
+            }
+
+            if (roundWon) {
+                statusDisplay.textContent = `🎉 Победитель: ${currentPlayer}`;
+                gameActive = false;
+                return;
+            }
+
+            if (!gameState.includes("")) {
+                statusDisplay.textContent = "Ничья!";
+                gameActive = false;
+                return;
+            }
+
+            currentPlayer = currentPlayer === "X" ? "O" : "X";
+            statusDisplay.textContent = `Ход: ${currentPlayer}`;
+        }
+        // --- END TIC TAC TOE CORE LOGIC ---
         // --- ONLINE ROOMS: WebSocket client and helpers ---
         const APP_SERVER = "https://ludobulba.duckdns.org"; // сервер API
         const APP_WALLET_ADDRESS = TON_DEPOSIT_ADDRESS; // адрес депозитного кошелька приложения
