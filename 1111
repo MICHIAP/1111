@@ -117,8 +117,8 @@ window.showLotteryLobby = function(){ location.hash = '#/lottery'; };
 window.showTicTacToe = function(){ location.hash = '#/tictactoe'; };
 window.openLottery = function(size){ location.hash = '#/lottery/' + size; };
 
-); }
-function showById(id){ var el = document.getElementById(id); if(el) el.style.display = 'block'; window.scrollTo(0,0); }
+
+function showById(id){ var el = document.getElementById(id); if(el) el.style.display = 'block'; window.scrollTo(0,0
 
 
 if (typeof window.hideAllGameViews === 'undefined') {
@@ -155,7 +155,7 @@ function appRouter(){
 }
 
 window.addEventListener('hashchange', appRouter);
-window.addEventListener('load', function(){ appRouter(); });
+window.addEventListener('load', function(){ appRouter();
 // --- End SPA router ---
 
 // --- Export functions to window for inline HTML onclick ---
@@ -273,8 +273,8 @@ window.showLotteryLobby = function(){ location.hash = '#/lottery'; };
 window.showTicTacToe = function(){ location.hash = '#/tictactoe'; };
 window.openLottery = function(size){ location.hash = '#/lottery/' + size; };
 
-); }
-function showById(id){ var el = document.getElementById(id); if(el) el.style.display = 'block'; window.scrollTo(0,0); }
+
+function showById(id){ var el = document.getElementById(id); if(el) el.style.display = 'block'; window.scrollTo(0,0
 
 
 if (typeof window.hideAllGameViews === 'undefined') {
@@ -311,7 +311,7 @@ function appRouter(){
 }
 
 window.addEventListener('hashchange', appRouter);
-window.addEventListener('load', function(){ appRouter(); });
+window.addEventListener('load', function(){ appRouter();
 // --- End SPA router ---
 
 // --- Export functions to window for inline HTML onclick ---
@@ -912,9 +912,9 @@ let gameState = ["", "", "", "", "", "", "", "", ""];
                     try {
                         const msg = JSON.parse(event.data);
                         handleWsMessage(msg);
-                    } catch (e) { console.error("WS parse error", e); }
+                    } catch (e) { console.error("WS parse error", e
                 };
-                ws.onclose = () => { console.log("WebSocket closed"); setTimeout(initWebSocket, 2000); };
+                ws.onclose = () => { console.log("WebSocket closed"); setTimeout(initWebSocket, 2000;
             } catch (e) {
                 console.error("WS init error", e);
             }
@@ -1188,8 +1188,8 @@ window.showLotteryLobby = function(){ location.hash = '#/lottery'; };
 window.showTicTacToe = function(){ location.hash = '#/tictactoe'; };
 window.openLottery = function(size){ location.hash = '#/lottery/' + size; };
 
-); }
-function showById(id){ var el = document.getElementById(id); if(el) el.style.display = 'block'; window.scrollTo(0,0); }
+
+function showById(id){ var el = document.getElementById(id); if(el) el.style.display = 'block'; window.scrollTo(0,0
 
 
 if (typeof window.hideAllGameViews === 'undefined') {
@@ -1226,7 +1226,7 @@ function appRouter(){
 }
 
 window.addEventListener('hashchange', appRouter);
-window.addEventListener('load', function(){ appRouter(); });
+window.addEventListener('load', function(){ appRouter();
 // --- End SPA router ---
 
 // --- Export functions to window for inline HTML onclick ---
@@ -1303,9 +1303,9 @@ if (typeof window !== 'undefined') {
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            50% { transform: rotate(360deg); }
-            100% { transform: rotate(0deg); }
+            0% { transform: rotate(0deg
+            50% { transform: rotate(360deg
+            100% { transform: rotate(0deg
         }
 
         #loading-status-text {
