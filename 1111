@@ -299,9 +299,7 @@
             }
         }
 
-        if (document.getElementById('copy-referral-link')) {
-            document.getElementById('copy-referral-link').addEventListener('click', (e) => {
-        }
+        document.getElementById('copy-referral-link').addEventListener('click', (e) => {
             const linkSpan = document.getElementById('referral-link');
             const link = linkSpan.textContent;
 
@@ -431,9 +429,7 @@
                 }
             });
 
-            if (document.getElementById('connect-wallet-button')) {
-                document.getElementById('connect-wallet-button').addEventListener('click', () => {
-            }
+            document.getElementById('connect-wallet-button').addEventListener('click', () => {
                 if (walletAddress) {
                     disconnectWallet();
                 } else {
@@ -458,27 +454,26 @@
             }
         });
 
-        if (document.getElementById('shared-deposit-btn')) {
-            document.getElementById('shared-deposit-btn').addEventListener('click', sendTonTransaction);
+        const el_shared_deposit_btn = document.getElementById('shared-deposit-btn');
+        if (el_shared_deposit_btn) {
+            el_shared_deposit_btn.addEventListener('click', sendTonTransaction);
         }
-        if (document.getElementById('action-deposit')) {
-            document.getElementById('action-deposit').addEventListener('click', sendTonTransaction);
+        const el_action_deposit = document.getElementById('action-deposit');
+        if (el_action_deposit) {
+            el_action_deposit.addEventListener('click', sendTonTransaction);
         }
 
-        if (document.getElementById('shared-withdraw-btn')) {
-            document.getElementById('shared-withdraw-btn').addEventListener('click', () => {
-        }
+        document.getElementById('shared-withdraw-btn').addEventListener('click', () => {
             if (!walletAddress) { showNotification('Пожалуйста, сначала подключите кошелек TON.'); return; }
             showNotification('Открывается окно для вывода TON...');
         });
-        if (document.getElementById('action-withdraw')) {
-            document.getElementById('action-withdraw').addEventListener('click', () => {
-        }
+        document.getElementById('action-withdraw').addEventListener('click', () => {
                 if (!walletAddress) { showNotification('Пожалуйста, сначала подключите кошелек TON.'); return; }
             showNotification('Открывается окно для вывода средств (из блока Profile)...');
         });
-        if (document.getElementById('action-history')) {
-            document.getElementById('action-history').addEventListener('click', () => showNotification('Загружается история транзакций...'));
+        const el_action_history = document.getElementById('action-history');
+        if (el_action_history) {
+            el_action_history.addEventListener('click', () => showNotification('Загружается история транзакций...'));
         }
 
         // --- Dynamic Referral Data ---
@@ -708,43 +703,46 @@ let gameState = ["", "", "", "", "", "", "", "", ""];
 })();
 
             });
-            if (document.getElementById('new-game-button')) {
-                document.getElementById('new-game-button').addEventListener('click', handleRestartGame);
+            const el_new_game_button = document.getElementById('new-game-button');
+            if (el_new_game_button) {
+                el_new_game_button.addEventListener('click', handleRestartGame);
             }
 
             // Привязка слушателей для навигации по играм
-            if (document.getElementById('open-tictactoe-game')) {
-                document.getElementById('open-tictactoe-game').addEventListener('click', () => {
-            }
+            document.getElementById('open-tictactoe-game').addEventListener('click', () => {
     showTicTacToe();
     statusDisplay = document.getElementById('game-status');
     if(statusDisplay) statusDisplay.textContent = 'Ход: X';
 });
-            if (document.getElementById('back-to-lobby-button')) {
-                document.getElementById('back-to-lobby-button').addEventListener('click', () => {
-            }
+            document.getElementById('back-to-lobby-button').addEventListener('click', () => {
                 // При возврате к лобби, перезапускаем игру
                 handleRestartGame();
                 showGameLobby();
             });
             // Навигация по категориям
-            if (document.getElementById('open-pvp-lobby')) {
-                document.getElementById('open-pvp-lobby').addEventListener('click', showPvPLobby);
+            const el_open_pvp_lobby = document.getElementById('open-pvp-lobby');
+            if (el_open_pvp_lobby) {
+                el_open_pvp_lobby.addEventListener('click', showPvPLobby);
             }
-            if (document.getElementById('open-solo-lobby')) {
-                document.getElementById('open-solo-lobby').addEventListener('click', showSoloLobby);
+            const el_open_solo_lobby = document.getElementById('open-solo-lobby');
+            if (el_open_solo_lobby) {
+                el_open_solo_lobby.addEventListener('click', showSoloLobby);
             }
-            if (document.getElementById('open-lottery-lobby')) {
-                document.getElementById('open-lottery-lobby').addEventListener('click', showLotteryLobby);
+            const el_open_lottery_lobby = document.getElementById('open-lottery-lobby');
+            if (el_open_lottery_lobby) {
+                el_open_lottery_lobby.addEventListener('click', showLotteryLobby);
             }
-            if (document.getElementById('open-lottery-10')) {
-                if (document.getElementById('open-lottery-10')) document.getElementById('open-lottery-10').addEventListener('click', () => openLottery(10));
+            const el_open_lottery_10 = document.getElementById('open-lottery-10');
+            if (el_open_lottery_10) {
+                el_open_lottery_10.addEventListener('click', () => openLottery(10));
             }
-            if (document.getElementById('open-lottery-100')) {
-                if (document.getElementById('open-lottery-100')) document.getElementById('open-lottery-100').addEventListener('click', () => openLottery(100));
+            const el_open_lottery_100 = document.getElementById('open-lottery-100');
+            if (el_open_lottery_100) {
+                el_open_lottery_100.addEventListener('click', () => openLottery(100));
             }
-            if (document.getElementById('open-lottery-1000')) {
-                if (document.getElementById('open-lottery-1000')) document.getElementById('open-lottery-1000').addEventListener('click', () => openLottery(1000));
+            const el_open_lottery_1000 = document.getElementById('open-lottery-1000');
+            if (el_open_lottery_1000) {
+                el_open_lottery_1000.addEventListener('click', () => openLottery(1000));
             }
 
 
