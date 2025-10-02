@@ -9,40 +9,18 @@
 
 // --- Ensure global functions exist ---
 if (typeof showTicTacToe === 'undefined') {
-    function showTicTacToe() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const ttt = document.getElementById('game-view-tictactoe');
-        if (ttt) ttt.style.display = 'block';
-    }
+    
 }
 if (typeof openLottery === 'undefined') {
-    function openLottery(size) {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const lot = document.getElementById('lottery-room');
-        if (lot) {
-            lot.style.display = 'block';
-            const title = document.getElementById('lottery-title');
-            if (title) title.textContent = size + " TON Lottery";
-        }
+    
     }
 }
 
 
 // --- Explicit definitions for missing functions ---
-function showTicTacToe() {
-    document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-    const ttt = document.getElementById('game-view-tictactoe');
-    if (ttt) ttt.style.display = 'block';
-}
 
-function openLottery(size) {
-    document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-    const lot = document.getElementById('lottery-room');
-    if (lot) {
-        lot.style.display = 'block';
-        const title = document.getElementById('lottery-title');
-        if (title) title.textContent = size + " TON Lottery";
-    }
+
+
 }
 
 
@@ -185,20 +163,9 @@ if (typeof window !== 'undefined') {
     <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js">
 
 // --- Explicit definitions for missing functions ---
-function showTicTacToe() {
-    document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-    const ttt = document.getElementById('game-view-tictactoe');
-    if (ttt) ttt.style.display = 'block';
-}
 
-function openLottery(size) {
-    document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-    const lot = document.getElementById('lottery-room');
-    if (lot) {
-        lot.style.display = 'block';
-        const title = document.getElementById('lottery-title');
-        if (title) title.textContent = size + " TON Lottery";
-    }
+
+
 }
 
 
@@ -1102,20 +1069,9 @@ let gameState = ["", "", "", "", "", "", "", "", ""];
     
 
 // --- Explicit definitions for missing functions ---
-function showTicTacToe() {
-    document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-    const ttt = document.getElementById('game-view-tictactoe');
-    if (ttt) ttt.style.display = 'block';
-}
 
-function openLottery(size) {
-    document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-    const lot = document.getElementById('lottery-room');
-    if (lot) {
-        lot.style.display = 'block';
-        const title = document.getElementById('lottery-title');
-        if (title) title.textContent = size + " TON Lottery";
-    }
+
+
 }
 
 
