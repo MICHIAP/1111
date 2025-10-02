@@ -46,7 +46,30 @@ function openLottery(size) {
 }
 
 
-// --- Extra navigation functions ---
+
+// --- Safe navigation functions (define only if not already declared) ---
+if (typeof showPvPLobby === 'undefined') {
+    function showPvPLobby() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lobby = document.getElementById('pvp-lobby');
+        if (lobby) lobby.style.display = 'block';
+    }
+}
+if (typeof showSoloLobby === 'undefined') {
+    function showSoloLobby() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lobby = document.getElementById('solo-lobby');
+        if (lobby) lobby.style.display = 'block';
+    }
+}
+if (typeof showLotteryLobby === 'undefined') {
+    function showLotteryLobby() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lobby = document.getElementById('lottery-lobby');
+        if (lobby) lobby.style.display = 'block';
+    }
+}
+
 function showPvPLobby() {
     document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
     const lobby = document.getElementById('pvp-lobby');
@@ -98,7 +121,30 @@ function openLottery(size) {
 }
 
 
-// --- Extra navigation functions ---
+
+// --- Safe navigation functions (define only if not already declared) ---
+if (typeof showPvPLobby === 'undefined') {
+    function showPvPLobby() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lobby = document.getElementById('pvp-lobby');
+        if (lobby) lobby.style.display = 'block';
+    }
+}
+if (typeof showSoloLobby === 'undefined') {
+    function showSoloLobby() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lobby = document.getElementById('solo-lobby');
+        if (lobby) lobby.style.display = 'block';
+    }
+}
+if (typeof showLotteryLobby === 'undefined') {
+    function showLotteryLobby() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lobby = document.getElementById('lottery-lobby');
+        if (lobby) lobby.style.display = 'block';
+    }
+}
+
 function showPvPLobby() {
     document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
     const lobby = document.getElementById('pvp-lobby');
@@ -911,7 +957,30 @@ function openLottery(size) {
 }
 
 
-// --- Extra navigation functions ---
+
+// --- Safe navigation functions (define only if not already declared) ---
+if (typeof showPvPLobby === 'undefined') {
+    function showPvPLobby() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lobby = document.getElementById('pvp-lobby');
+        if (lobby) lobby.style.display = 'block';
+    }
+}
+if (typeof showSoloLobby === 'undefined') {
+    function showSoloLobby() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lobby = document.getElementById('solo-lobby');
+        if (lobby) lobby.style.display = 'block';
+    }
+}
+if (typeof showLotteryLobby === 'undefined') {
+    function showLotteryLobby() {
+        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
+        const lobby = document.getElementById('lottery-lobby');
+        if (lobby) lobby.style.display = 'block';
+    }
+}
+
 function showPvPLobby() {
     document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
     const lobby = document.getElementById('pvp-lobby');
