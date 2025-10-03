@@ -341,8 +341,8 @@ if (typeof window !== 'undefined') {
                 }, 300);
 
             } catch (error) {
-                console.error("КРИТИЧЕСКАЯ ОШИБКА инициализации приложения:", error.message, error);
-                showCriticalError("Критическая ошибка инициализации: " + error.message);
+    console.error("КРИТИЧЕСКАЯ ОШИБКА инициализации приложения:", error.message, error);
+}showCriticalError("Критическая ошибка инициализации: " + error.message);
                  }
         }
 
@@ -355,8 +355,8 @@ if (typeof window !== 'undefined') {
                     window.Telegram.WebApp.showAlert(message);
                     return;
                 } catch (e) {
-                    console.error("TWA showAlert failed, falling back to custom notification:", e);
-                }
+    console.error("TWA showAlert failed, falling back to custom notification:", e);
+}}
             }
 
             console.log("Notification: " + message);
@@ -572,8 +572,8 @@ if (typeof window !== 'undefined') {
                 }, 2000);
 
             } catch (err) {
-                showNotification('Не удалось скопировать ссылку. Попробуйте вручную.');
-                console.error('Copy failed:', err);
+    showNotification('Не удалось скопировать ссылку. Попробуйте вручную.');
+}console.error('Copy failed:', err);
             }
             document.body.removeChild(tempInput);
         });
@@ -608,8 +608,8 @@ if (typeof window !== 'undefined') {
                 window.Telegram.WebApp.openTelegramLink(linkToOpen);
                 showNotification('Открываю кошелек для подключения...');
             } catch (e) {
-                console.error('Connection failed:', e);
-                showNotification('Ошибка подключения кошелька. Пожалуйста, попробуйте еще раз.');
+    console.error('Connection failed:', e);
+}showNotification('Ошибка подключения кошелька. Пожалуйста, попробуйте еще раз.');
             }
         }
 
@@ -619,8 +619,8 @@ if (typeof window !== 'undefined') {
                  updateWalletUI(null);
                  showNotification('Кошелек отключен.');
             } catch (e) {
-                console.error('Disconnection failed:', e);
-                showNotification('Ошибка при отключении кошелька.');
+    console.error('Disconnection failed:', e);
+}showNotification('Ошибка при отключении кошелька.');
             }
         }
 
@@ -654,9 +654,8 @@ if (typeof window !== 'undefined') {
                 updateBalance('deposit', displayAmount);
 
             } catch (e) {
-                console.error("TON Transaction Failed:", e);
-
-                let errorMessage = 'Транзакция отменена пользователем.';
+    console.error("TON Transaction Failed:", e);
+}let errorMessage = 'Транзакция отменена пользователем.';
                 if (e.message && (e.message.includes('NOT_CONNECTED') || e.message.includes('User declined'))) {
                      errorMessage = 'Транзакция отклонена или кошелек отключен.';
                 }
@@ -689,8 +688,8 @@ if (typeof window !== 'undefined') {
                 }
             });
         } catch (e) {
-            console.error("Failed to initialize TonConnectSDK:", e);
-            showNotification('Не удалось загрузить TON Connect SDK.');
+    console.error("Failed to initialize TonConnectSDK:", e);
+}showNotification('Не удалось загрузить TON Connect SDK.');
         }
 
         // --- Setup Event Listeners for Menu & Shared Actions ---
@@ -846,12 +845,13 @@ let gameState = ["", "", "", "", "", "", "", "", ""];
                     try {
                         const msg = JSON.parse(event.data);
                         handleWsMessage(msg);
-                    } catch (e) { console.error("WS parse error", e);
-                };
+                    } catch (e) {
+    console.error("WS parse error", e);;
+}};
                 ws.onclose = () => { console.log("WebSocket closed"); setTimeout(initWebSocket, 2000);
             } catch (e) {
-                console.error("WS init error", e);
-            }
+    console.error("WS init error", e);
+}}
         }
 
         function handleWsMessage(msg) {
@@ -960,8 +960,8 @@ let gameState = ["", "", "", "", "", "", "", "", ""];
             });
         });
     } catch (e) {
-        console.error('attachOnlineCellHandlers error', e);
-    }
+    console.error('attachOnlineCellHandlers error', e);
+}}
 })();
 
             });
