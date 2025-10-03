@@ -70,23 +70,8 @@ if (typeof showLotteryLobby === 'undefined') {
 
 
 // --- Safe global definitions for game functions ---
-if (typeof window.showTicTacToe === 'undefined') {
-    window.showTicTacToe = function() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const ttt = document.getElementById('game-view-tictactoe');
-        if (ttt) ttt.style.display = 'block';
-    };
 }
 
-if (typeof window.openLottery === 'undefined') {
-    window.openLottery = function(size) {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const lot = document.getElementById('lottery-room');
-        if (lot) {
-            lot.style.display = 'block';
-            const title = document.getElementById('lottery-title');
-            if (title) title.textContent = size + " TON Lottery";
-        }
     };
 }
 
@@ -118,7 +103,7 @@ window.showTicTacToe = function(){ location.hash = '#/tictactoe'; };
 window.openLottery = function(size){ location.hash = '#/lottery/' + size; };
 
 
-function showById(id){ var el = document.getElementById(id); if(el) el.style.display = 'block'; window.scrollTo(0,0
+function showById(id){ var el = document.getElementById(id); if(el) el.style.display = 'block'; window.scrollTo(0,0); }
 
 
 if (typeof window.hideAllGameViews === 'undefined') {
@@ -174,38 +159,12 @@ if (typeof window !== 'undefined') {
     <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js">
 
 
-if (typeof window.showTicTacToe === 'undefined') {
-    window.showTicTacToe = function() {
-        location.hash = '#/tictactoe';
-    };
 }
-if (typeof window.openLottery === 'undefined') {
-    window.openLottery = function(size) {
-        location.hash = '#/lottery/' + size;
-    };
 }
 
 // --- Safe navigation functions assigned to window ---
-if (typeof window.showPvPLobby === 'undefined') {
-    window.showPvPLobby = function() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const lobby = document.getElementById('pvp-lobby');
-        if (lobby) lobby.style.display = 'block';
-    };
 }
-if (typeof window.showSoloLobby === 'undefined') {
-    window.showSoloLobby = function() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const lobby = document.getElementById('solo-lobby');
-        if (lobby) lobby.style.display = 'block';
-    };
 }
-if (typeof window.showLotteryLobby === 'undefined') {
-    window.showLotteryLobby = function() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const lobby = document.getElementById('lottery-lobby');
-        if (lobby) lobby.style.display = 'block';
-    };
 }
 
 if (typeof showPvPLobby === 'undefined') {
@@ -226,33 +185,12 @@ if (typeof showLotteryLobby === 'undefined') {
 
 
 // --- Safe global definitions for game functions ---
-if (typeof window.showTicTacToe === 'undefined') {
-    window.showTicTacToe = function() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const ttt = document.getElementById('game-view-tictactoe');
-        if (ttt) ttt.style.display = 'block';
-    };
 }
 
-if (typeof window.openLottery === 'undefined') {
-    window.openLottery = function(size) {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const lot = document.getElementById('lottery-room');
-        if (lot) {
-            lot.style.display = 'block';
-            const title = document.getElementById('lottery-title');
-            if (title) title.textContent = size + " TON Lottery";
-        }
     };
 }
 
 
-if (typeof window.showMainGames === 'undefined') {
-    window.showMainGames = function() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const main = document.getElementById('games-section');
-        if (main) main.style.display = 'block';
-    };
 }
 
 
@@ -274,13 +212,9 @@ window.showTicTacToe = function(){ location.hash = '#/tictactoe'; };
 window.openLottery = function(size){ location.hash = '#/lottery/' + size; };
 
 
-function showById(id){ var el = document.getElementById(id); if(el) el.style.display = 'block'; window.scrollTo(0,0
+function showById(id){ var el = document.getElementById(id); if(el) el.style.display = 'block'; window.scrollTo(0,0); }
 
 
-if (typeof window.hideAllGameViews === 'undefined') {
-    window.hideAllGameViews = function() {
-        document.querySelectorAll('.game-view-container, #games-section')
-          .forEach(function(el){ el.style.display = 'none'; });
     };
 }
 
@@ -912,9 +846,9 @@ let gameState = ["", "", "", "", "", "", "", "", ""];
                     try {
                         const msg = JSON.parse(event.data);
                         handleWsMessage(msg);
-                    } catch (e) { console.error("WS parse error", e
+                    } catch (e) { console.error("WS parse error", e);
                 };
-                ws.onclose = () => { console.log("WebSocket closed"); setTimeout(initWebSocket, 2000;
+                ws.onclose = () => { console.log("WebSocket closed"); setTimeout(initWebSocket, 2000);
             } catch (e) {
                 console.error("WS init error", e);
             }
@@ -1089,38 +1023,12 @@ let gameState = ["", "", "", "", "", "", "", "", ""];
     
 
 
-if (typeof window.showTicTacToe === 'undefined') {
-    window.showTicTacToe = function() {
-        location.hash = '#/tictactoe';
-    };
 }
-if (typeof window.openLottery === 'undefined') {
-    window.openLottery = function(size) {
-        location.hash = '#/lottery/' + size;
-    };
 }
 
 // --- Safe navigation functions assigned to window ---
-if (typeof window.showPvPLobby === 'undefined') {
-    window.showPvPLobby = function() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const lobby = document.getElementById('pvp-lobby');
-        if (lobby) lobby.style.display = 'block';
-    };
 }
-if (typeof window.showSoloLobby === 'undefined') {
-    window.showSoloLobby = function() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const lobby = document.getElementById('solo-lobby');
-        if (lobby) lobby.style.display = 'block';
-    };
 }
-if (typeof window.showLotteryLobby === 'undefined') {
-    window.showLotteryLobby = function() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const lobby = document.getElementById('lottery-lobby');
-        if (lobby) lobby.style.display = 'block';
-    };
 }
 
 if (typeof showPvPLobby === 'undefined') {
@@ -1141,33 +1049,12 @@ if (typeof showLotteryLobby === 'undefined') {
 
 
 // --- Safe global definitions for game functions ---
-if (typeof window.showTicTacToe === 'undefined') {
-    window.showTicTacToe = function() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const ttt = document.getElementById('game-view-tictactoe');
-        if (ttt) ttt.style.display = 'block';
-    };
 }
 
-if (typeof window.openLottery === 'undefined') {
-    window.openLottery = function(size) {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const lot = document.getElementById('lottery-room');
-        if (lot) {
-            lot.style.display = 'block';
-            const title = document.getElementById('lottery-title');
-            if (title) title.textContent = size + " TON Lottery";
-        }
     };
 }
 
 
-if (typeof window.showMainGames === 'undefined') {
-    window.showMainGames = function() {
-        document.querySelectorAll('.game-view-container').forEach(el => el.style.display = 'none');
-        const main = document.getElementById('games-section');
-        if (main) main.style.display = 'block';
-    };
 }
 
 
@@ -1189,13 +1076,9 @@ window.showTicTacToe = function(){ location.hash = '#/tictactoe'; };
 window.openLottery = function(size){ location.hash = '#/lottery/' + size; };
 
 
-function showById(id){ var el = document.getElementById(id); if(el) el.style.display = 'block'; window.scrollTo(0,0
+function showById(id){ var el = document.getElementById(id); if(el) el.style.display = 'block'; window.scrollTo(0,0); }
 
 
-if (typeof window.hideAllGameViews === 'undefined') {
-    window.hideAllGameViews = function() {
-        document.querySelectorAll('.game-view-container, #games-section')
-          .forEach(function(el){ el.style.display = 'none'; });
     };
 }
 
@@ -1302,11 +1185,11 @@ if (typeof window !== 'undefined') {
             margin-bottom: 15px;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg
-            50% { transform: rotate(360deg
-            100% { transform: rotate(0deg
-        }
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(180deg); }
+    100% { transform: rotate(360deg); }
+}
 
         #loading-status-text {
             display: none;
